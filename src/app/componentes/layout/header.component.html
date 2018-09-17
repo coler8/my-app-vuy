@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" routerLink="/"><img width="40" alt="Logo Vuy" src="../assets/imagenes/vuy.png" style="margin-top: 5px;"></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/productos">Productos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/novedades">Novedades</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/producto_pujas">Pujar por Producto!</a>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li class="nav-item" *ngIf="!isLogin">
+        <a routerLink="/login" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span> Anónimo</a>
+      </li>
+      <li class="nav-item" *ngIf="!isLogin">
+        <a routerLink="/login" routerLinkActive="active"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+      </li>
+      <li class="nav-item" *ngIf="!isLogin">
+        <a routerLink="/register" routerLinkActive="active"><span class="glyphicon glyphicon-edit"></span> Registrarse</a>
+      </li>
+
+      <li class="nav-item" *ngIf="isLogin">
+        <a routerLink="/subir" routerLinkActive="active">
+          <i class="glyphicon glyphicon-open"></i>&nbsp;Subir producto</a>
+      </li>
+
+      <li class="nav-item" *ngIf="isLogin">
+        <a routerLink="/add_product" routerLinkActive="active">
+          <i class="glyphicon glyphicon-open"></i>&nbsp;Subir producto a puja</a>
+      </li>
+
+      <li class="nav-item" *ngIf="isLogin">
+        <a routerLink="/perfil" routerLinkActive="active">
+          <i class="glyphicon glyphicon-user"></i>&nbsp;Perfil
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="isAdmin && isLogin">
+        <a style="color: #dd4b39;">{{ "Admin: " + nombreUsuario  }}</a>
+      </li>
+      <li class="nav-item" *ngIf="isLogin && !isAdmin">
+        <a style="color: #007bff;">{{ nombreUsuario }}</a>
+      </li>
+      <li class="nav-item" *ngIf="isLogin">
+        <img width="40" src="{{fotoUsuario}}" class="rounded-circle">
+      </li>
+
+      <li class="nav-item" *ngIf="isLogin">
+        <button type="button" class="btn btn-outline-danger" routerLink="/" (click)="onClickLogout()">
+          <span class="glyphicon glyphicon-log-out"></span>
+        </button>
+      </li>
+    </ul>
+
+  </div>
+
+</nav>
+

@@ -1,0 +1,103 @@
+<section class="container" style="margin-bottom: 100px;">
+    <div class="columns is-marginless">
+        <div class="column is-one-quarter-tablet menu-column">
+            <aside class="menu">
+                <p class="menu-label">
+                    Categorias
+                </p>
+                <ul class="menu-list">
+                    <li style="font-weight: bold;"><a (click)="navigate()">Todos los productos</a></li>
+                    <li>
+                        <ul class="is-paddingless">
+                            <li *ngFor="let category of categories">
+                                <a (click)="navigate(category.toLowerCase())">
+                                    {{category}}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+        <div class="column">
+            <div class="columns is-marginless is-mobile">
+                <div class="column is-half-tablet">
+                    <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+                        <h2 class="font-weight-bold">Subastas</h2>
+                    </nav>
+                </div>
+                <div class="column is-half-tablet">
+                    <div class="select sort-dropdown">
+                        <select (change)="sort(select.value)" #select>
+                            <option *ngFor="let s of sortOptions">{{s.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-marginless" *ngIf="!items.length">
+                <div class="column is-12">
+                    <div class="box">
+                        <div class="section">
+                            <p class="has-text-centered">
+                                <span class="icon"><i class="fa fa-4x fa-exclamation-circle" aria-hidden="true"></i></span>
+                            </p>
+                            <p class="heading is-size-6 has-text-centered">No hay productos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-marginless is-multiline" *ngIf="items.length">
+                <div class="column is-one-third-desktop is-half-tablet item" *ngFor="let item of items">
+                    <div class="card">
+                      <div class="view overlay">
+                        <div class="hovereffect">
+                          <img [src]="item.photo" style="width: 300px;height: 200px;padding: 20px;" alt="Placeholder image">
+                          <div class="overlay">
+                            <p><a *ngIf="item.author_uid !== currentUid" (click)="bid(item.product_id)">PUJAR</a></p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="view overlay">
+                            <div class="bid-info box is-primary">
+                                <div class="has-text-centered" style="font-size: 18px;">
+                                    <strong *ngIf="!item?.curr_val && item.author_uid === currentUid">Esperando primera apuesta</strong>
+                                    <strong  *ngIf="!item?.curr_val && item.author_uid !== currentUid">Hacer la primera apuesta</strong>
+                                    <strong *ngIf="item?.curr_val">Actual apuesta:{{item?.curr_val}}<i class="fa fa-euro" aria-hidden="true"></i></strong>
+                                  </div>
+                                <div class="has-text-centered" *ngIf="!isAdmin">
+                                    <a class="button is-success" *ngIf="item.author_uid !== currentUid" (click)="bid(item.product_id)">
+                                        <span class="icon"><i class="fa fa-gavel" aria-hidden="true"></i></span>
+                                        <span>Pujar</span>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content" (click)="showProduct(item)">
+                                    <p class="title is-5" [innerHTML]="item?.name"></p>
+                                    <p class="subtitle is-6" [innerHTML]="'Categoria: '+(item?.category).toUpperCase()"></p>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <strong class="is-size-7"><span>Precio base:
+                                </span>{{item?.base_price}}<i class="fa fa-euro"></i></strong>
+                                <br>
+                                <strong class="is-size-7"><span>Incremento minimo:
+                                </span>{{item?.increment}}<i class="fa fa-euro" aria-hidden="true"></i></strong>
+                              <br>
+                              <strong class="is-size-7"><span>Autor:</span>{{item.author_name}}</strong>
+                                <br>
+                                <p class="is-size-7" [innerHTML]="'Publicación: '+(item?.createdAt | date)"></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

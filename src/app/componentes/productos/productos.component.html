@@ -1,0 +1,93 @@
+<h2 class="h1 text-center my-5 font-weight-bold">Productos</h2>
+
+<section class="container" style="margin-bottom: 100px;">
+  <div class="columns is-marginless">
+<div class="column is-one-quarter-tablet menu-column">
+  <aside class="menu">
+    <p class="menu-label">
+      Filtros
+    </p>
+    <ul class="menu-list">
+      <li>
+        <a (click)="removeFilter('categoria') || removeFilter('ciudad') || removeFilter('precio')">
+        Todos los productos</a>
+      </li>
+      <li>
+        <label for="inputFilt">Categorias</label>
+        <div class="select">
+          <select id="inputFilt" [(ngModel)]="categoria" (change)="filterExact('categoria', categoria)">
+            <option value="Movil">Movil</option>
+            <option value="Ordenador">Ordenador</option>
+            <option value="Videoconsola">Videoconsola</option>
+          </select>
+        </div>
+      </li>
+      <li>
+        <label for="inputFilt1">Ciudad</label>
+        <div class="select">
+          <select id="inputFilt1" [(ngModel)]="ciudad" (change)="filterExact('ciudad', ciudad)">
+            <option value="Elche">Elche</option>
+            <option value="Alicante">Alicante</option>
+            <option value="San Juan">San Juan</option>
+            <option value="Benidorm">Benidorm</option>
+          </select>
+        </div>
+      </li>
+      <li>
+        <label>Precio menor a:</label>
+        <input class="form-control" type="number"
+               [(ngModel)]="precio"
+               (change)="filterLessThan('precio', precio)">
+        <br>
+
+        <button class="form-control" *ngIf="categoria || ciudad || precio"
+                (click)="removeFilter('categoria') || removeFilter('ciudad') || removeFilter('precio')">
+          Eliminar filtros
+        </button>
+      </li>
+    </ul>
+  </aside>
+</div>
+
+<div class="column">
+  <div class="columns is-marginless is-multiline">
+    <div class="column is-one-third-desktop is-half-tablet item" *ngFor="let producto of filteredProducts">
+      <div class="card">
+
+          <div class="hovereffect">
+            <img src="{{producto.fotoProducto}}"  class="card-img-top" alt="{{producto.nombre}}" style="margin: 30px auto auto auto;width: 300px;height: 200px;">
+            <div class="overlay">
+              <h2>{{producto.nombre}}</h2>
+              <a class="info" href="/details/{{producto.id}}">Ver detalles</a>
+            </div>
+          </div>
+
+
+        <div class="card-content">
+          <div class="card-body text-center">
+            <a class="grey-text">
+              <h5>{{producto.categoria}}</h5>
+            </a>
+            <h5>
+              <strong>
+                <a href="/details/{{producto.id}}" class="dark-grey-text">{{producto.nombre}}
+                  <span class="badge badge-pill danger-color">NEW</span>
+                </a>
+              </strong>
+            </h5>
+
+            <h4 class="font-weight-bold blue-text">
+              <strong>{{producto.precio+ "€"}}</strong>
+            </h4>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+  </section>
+
+
+

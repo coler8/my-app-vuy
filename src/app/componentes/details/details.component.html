@@ -1,0 +1,93 @@
+
+<div class="fondo" style="margin-bottom: 100px;">
+<h1 style="margin-left: 50px;">Detalles del producto</h1>
+<div class="container dark-grey-text mt-5">
+
+  <div class="row wow fadeIn" style="visibility: visible; animation-name: fadeIn;background-color: antiquewhite;">
+
+    <div class="col-md-6 mb-4 z-depth-2">
+      <div class="view zoom">
+          <img [src]="producto.fotoProducto" [alt]="producto.nombre" class="img-fluid" style="margin: 105px auto auto;width: 500px;height: 300px;">
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-4 z-depth-1">
+      <div class="p-4">
+
+        <div class="mb-3">
+          <a>
+            <span class="badge purple mr-1">{{producto.categoria}}</span>
+          </a>
+          <a>
+            <span class="badge green mr-1">New</span>
+          </a>
+          <a>
+            <span class="badge red mr-1">Novedad</span>
+          </a>
+        </div>
+
+        <form class="d-flex justify-content-left">
+          <div class="btn-group pull-right mt-4" *ngIf="idUsuarioLogueado == producto.userId || isAdmin">
+            <a routerLink="/edit/{{producto.id}}" class="btn btn-dark">Editar</a>
+            <a  class="btn btn-danger" (click)="onClickDelete()">Borrar</a>
+          </div>
+        </form>
+        <br>
+
+        <span class="badge blue mr-1" style="font-size: 30px;margin-left: 20px;margin-bottom: 20px;">{{producto.precio +" €"}}</span>
+
+        <table class="table" cellspacing="0" style="font-size: 20px">
+          <tbody>
+          <tr>
+            <th scope="row"><span class="glyphicon glyphicon-shopping-cart"></span> Nombre:</th>
+            <td>{{producto.nombre}}</td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="glyphicon glyphicon-list-alt"></span> Descripcion:</th>
+            <td>{{producto.descripcion}}</td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="glyphicon glyphicon-tag"></span> Categoria:</th>
+            <td>{{producto.categoria}}</td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="glyphicon glyphicon-home"></span> Ciudad</th>
+            <td>{{producto.ciudad}}</td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="glyphicon glyphicon-earphone"></span> Teléfono de contacto</th>
+            <td>{{producto.numTlf}}</td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="glyphicon glyphicon-calendar"></span>Producto añadido</th>
+            <td><p class="blog-post-meta">{{producto.fechaPublicacion  | date: 'dd-MMM'}}
+              Por <a href="">{{ producto.userNombre}}</a></p><td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row d-flex justify-content-center wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+    <div class="col-md-6 text-center">
+
+      <h4 class="my-4 h4"><span class="glyphicon glyphicon-comment"></span>  Chatear con el vendedor</h4>
+
+      <button routerLink="/login" routerLinkActive="active" type="button" class="btn btn-primary" *ngIf="!isLogin">Iniciar sesion</button>
+
+      <div class="chat-window" *ngIf="isLogin">
+        <app-chat></app-chat>
+      </div>
+
+    </div>
+  </div>
+
+  <hr>
+
+</div>
+
+</div>
+

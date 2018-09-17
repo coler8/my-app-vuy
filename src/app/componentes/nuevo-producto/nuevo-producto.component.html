@@ -1,0 +1,84 @@
+
+<div class="mask rgba-indigo-strong d-flex justify-content-center align-items-center" style="margin-bottom: 100px;">
+  <div class="container col-sm-12">
+    <div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" style="margin-top: 20px;">
+      <article class="message is-danger" style="font-weight: bold;" *ngIf="showMessage">
+        <div class="message-body is-size-7 " [innerHTML]="message">
+        </div>
+      </article>
+      <div class="panel panel-info animated bounceIn">
+
+        <div class="panel-heading">
+          <div class="panel-title"><span class="glyphicon glyphicon-plus-sign"></span> Nuevo producto</div>
+        </div>
+
+        <div class="panel-body" >
+          <div class="col-md-6 offset-md-3">
+
+      <div class="card-body">
+        <form #formGuardar="ngForm" (ngSubmit)="onGuardarProducto(formGuardar)">
+          <div class="form-group">
+            <label for="nombre">Nombre del producto:</label>
+            <input type="text" class="form-control"
+                   id="nombre" name="nombre"
+                   [(ngModel)]="producto.nombre">
+          </div>
+
+          <div class="form-group">
+            <label for="fotoProducto">Foto del producto (URL):</label>
+            <input type="text" class="form-control"
+                   id="fotoProducto" name="fotoProducto"
+                   [(ngModel)]="producto.fotoProducto">
+          </div>
+
+          <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <textarea type="text" class="form-control"
+                      id="descripcion" name="descripcion"
+                      [(ngModel)]="producto.descripcion">
+            </textarea>
+          </div>
+          <div class="form-group">
+            <label for="categoria">Categoria</label>
+            <select name="categoria" id="categoria" class="form-control" [(ngModel)]="producto.categoria">
+              <option selected>Movil</option>
+              <option>Videoconsola</option>
+              <option>Ordenador</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="ciudad">Ciudad</label>
+            <select name="ciudad" id="ciudad"
+                    class="form-control"
+                    [(ngModel)]="producto.ciudad">
+              <option>Alicante</option>
+              <option>Elche</option>
+              <option>San Juan</option>
+              <option>Benidorm</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="precio">Telefono de contacto:</label>
+            <input type="number" class="form-control"
+                   id="numTlf" name="numTlf"
+                   [(ngModel)]="producto.numTlf">
+          </div>
+
+          <div class="form-group">
+            <label for="precio">Precio (€):</label>
+            <input type="number" class="form-control"
+                   id="precio" name="precio"
+                   [(ngModel)]="producto.precio">
+          </div>
+
+          <input type="submit" value="Subir" class="btn btn-primary btn-block">
+        </form>
+      </div>
+    </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

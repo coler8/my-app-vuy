@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./assets/sass/app-variables.scss";
+@import "./assets/sass/bulma-variables.scss";
+@import "./assets/sass/bulma-custom.scss";
+
+html,body {
+  background: url('./assets/imagenes/fondo.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+a,p,span{
+  font-size: 15px;
+}
+
+table tr,th,td{
+  font-size: 15px;
+}
+
+
+
+footer{
+  background: #000000;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+

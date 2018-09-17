@@ -1,0 +1,49 @@
+<div class="mask rgba-indigo-strong d-flex justify-content-center align-items-center" style="margin-bottom: 100px;">
+  <div class="container col-sm-12">
+    <div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" style="margin-top: 20px;">
+      <article class="message is-danger" style="font-weight: bold;" *ngIf="showMessage">
+        <div class="message-body is-size-7 " [innerHTML]="message">
+        </div>
+      </article>
+      <div class="panel panel-info animated fadeInLeft">
+
+        <div class="panel-heading">
+          <div class="panel-title"><span class="glyphicon glyphicon-user"></span> Registro</div>
+        </div>
+
+        <div class="panel-body" >
+          <div class="col-md-6 offset-md-3">
+            <h1 class="text-xs-center"><span class="ion-android-person-add" style="font-size: 20px;"></span> Registro</h1>
+
+            <form data-toggle="validator" #formData="ngForm" (ngSubmit)="onSubmit(formData)">
+              <div class="form-group">
+                <label for="email" class="control-label">Nombre usuario</label>
+                <input type="username" class="form-control" name="username" id="username"
+                       placeholder="Escriba username..." [(ngModel)]="username" class="form-control" required >
+              </div>
+              <div class="form-group">
+                <label for="email">Foto Perfil</label>
+                <input type="fotoPerfil" name="fotoPerfil" id="fotoPerfil"
+                       placeholder="Escriba URL..." [(ngModel)]="fotoPerfil" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Escriba email..."
+                       [(ngModel)]="email" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" name="password" id="password"
+                       placeholder="Escriba Contraseña..." [(ngModel)]="password" class="form-control" required>
+              </div>
+              <input type="submit" value="ENVIAR" class="btn btn-primary btn-block btn-lg">
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
