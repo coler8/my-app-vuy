@@ -1,0 +1,15 @@
+
+/*datos del usuario registrado*/
+  [
+    {
+      "username": "paco",
+      "bio": "avenida libertad",
+      "image": "./assets/imagenes/vuy.png"
+    },
+    {
+      "username": "jose",
+      "bio": "universidad miguel hernandez",
+      "image": "./assets/imagenes/vuy.png"
+    }
+  ]
+
