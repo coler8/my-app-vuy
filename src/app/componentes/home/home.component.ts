@@ -16,13 +16,13 @@ export class HomeComponent implements OnInit {
   title:string = 'VUY';
 
   productos: ProductoInterface[];
+  products;
+  allproducts;
+
   searchterm: string;
 
   startAt = new Subject();
   endAt = new Subject();
-
-  products;
-  allproducts;
 
   lastKeypress: number = 0;
 
@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
     this.allProducts();
     this.getallProds().subscribe((prods) => {
       this.allproducts = prods;
-    })
+    });
     Observable.combineLatest(this.startobs, this.endobs).subscribe((value) => {
       this.firequery(value[0], value[1]).subscribe((products) => {
         this.products = products;

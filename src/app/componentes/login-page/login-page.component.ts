@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import {Router } from '@angular/router';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {AuthService} from '../../services/auth.service';
@@ -26,7 +25,7 @@ export class LoginPageComponent implements OnInit {
 
   onSubmitLogin() {
     this.authService.loginEmail(this.email, this.password)
-    .then( (res) => {
+    .then( () => {
       this.flashMensaje.show('Usuario logueado correctamente.',
       {cssClass: 'alert-success', timeout: 4000});
       this.router.navigate(['/perfil']);
@@ -39,21 +38,21 @@ export class LoginPageComponent implements OnInit {
 
   onClickGoogleLogin() {
    this.authService.loginGoogle()
-    .then((res) => {
+    .then(() => {
         this.router.navigate(['/perfil']);
     }).catch( err => console.log(err.message));
   }
 
   onClickFacebookLogin() {
     this.authService.loginFacebook()
-      .then((res) => {
+      .then(() => {
           this.router.navigate(['/perfil']);
       }).catch( err => console.log(err.message));
   }
 
   onClickTwitterLogin() {
     this.authService.loginTwitter()
-      .then((res) => {
+      .then(() => {
         this.router.navigate(['/perfil']);
       }).catch (err => console.log(err.message));
   }

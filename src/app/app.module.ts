@@ -3,12 +3,9 @@ import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
-
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-
+import { HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {ModuleWithProviders} from '@angular/compiler/src/core';
-
 import {FlashMessagesModule, FlashMessagesService} from 'angular2-flash-messages';
 
 import {AngularFireModule} from 'angularfire2';
