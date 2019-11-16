@@ -21,11 +21,9 @@ export class ProductosComponent implements OnInit {
   ciudad:string;
   precio:number;
   /// Active filter rules
-  filters = {}
+  filters = {};
 
-  constructor(private productoService: ProductoService,
-              private afs: AngularFirestore,
-              private db: AngularFireDatabase)
+  constructor(private productoService: ProductoService)
   {}
 
   ngOnInit() {
@@ -43,24 +41,24 @@ export class ProductosComponent implements OnInit {
   }
 
   filterExact(property: string, rule: any) {
-    this.filters[property] = val => val == rule
+    this.filters[property] = val => val == rule;
     this.applyFilters()
   }
 
   filterLessThan(property: string, rule: number) {
-    this.filters[property] = val => val < rule
+    this.filters[property] = val => val < rule;
     this.applyFilters()
   }
 
   filterMoreThan(property: string, rule: number) {
-    this.filters[property] = val => val > rule
+    this.filters[property] = val => val > rule;
     this.applyFilters()
   }
 
 
   removeFilter(property: string) {
-    delete this.filters[property]
-    this[property] = null
+    delete this.filters[property];
+    this[property] = null;
     this.applyFilters()
   }
 

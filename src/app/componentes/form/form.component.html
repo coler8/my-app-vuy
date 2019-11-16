@@ -1,37 +1,36 @@
-<div class="mask rgba-indigo-strong d-flex justify-content-center align-items-center" style="margin-bottom: 100px;">
-  <div class="container col-sm-12">
-    <div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" style="margin-top: 20px;">
-      <article class="message is-danger" style="font-weight: bold;" *ngIf="showMessage">
-        <div class="message-body is-size-7 " [innerHTML]="message">
-        </div>
-      </article>
-      <div class="panel panel-info animated bounceIn">
+<div class="mask rgba-indigo-strong " style="padding: 50px;">
+  <div class="message is-danger" style="font-weight: bold;" *ngIf="showMessage">
+    <div class="message-body is-size-7 " [innerHTML]="message">
+    </div>
+  </div>
+  <div class="container">
+    <div class="d-flex justify-content-center">
 
-        <div class="panel-heading">
-          <div class="panel-title"><span class="glyphicon glyphicon-plus-sign"></span> Nuevo producto a subasta</div>
+      <div class="card animated bounceIn">
+
+        <div class="card-header" style="background-color: #d9edf7;">
+          <h2 style="margin: auto;">Subir producto a puja</h2>
         </div>
 
-        <div class="panel-body" >
+        <div class="card-body" >
           <div class="col-md-6 offset-md-3">
-
-            <div class="card-body">
-              <div class="form-group">
-                <label>Nombre del producto</label>
+            <div class="form-group">
+                <label for="nombre">Nombre del producto</label>
                 <div class="control">
-                  <input class="input" type="text" required #name>
+                  <input class="input" type="text" id="nombre" required #name>
                 </div>
               </div>
 
               <div class="form-group">
-                <label>Imagen del producto</label>
-                <input class="input" type="text" required #imagen>
+                <label for="imagen">Imagen del producto</label>
+                <input class="input" type="text" id="imagen" required #imagen>
               </div>
 
               <div class="form-group">
-                <label>Categoría</label>
+                <label for="cat">Categoría</label>
                 <div class="control">
                   <div class="select">
-                    <select #category>
+                    <select id="cat" #category>
                       <option>Movil</option>
                       <option>Ordenador</option>
                       <option>Videoconsola</option>
@@ -40,12 +39,14 @@
                 </div>
               </div>
               <div class="form-group">
-                <label>Precio base</label>
+                <label for="price">Precio base</label>
                 <div class="field  has-addons">
                   <p class="control">
                     <span class="select">
-                        <select>
+                        <select id="price">
                           <option>€</option>
+                          <option>$</option>
+                          <option>£</option>
                         </select>
                      </span>
                   </p>
@@ -55,22 +56,22 @@
                 </div>
               </div>
               <div class="form-group">
-                <label>Incremento mínimo</label>
+                <label for="inc">Incremento mínimo</label>
                 <div class="control">
-                  <input class="input" type="number" required #increment>
+                  <input class="input" type="number" id="inc" required #increment>
                 </div>
               </div>
               <div class="form-group">
-                <label>Descripción</label>
+                <label for="desc">Descripción</label>
                 <div class="control">
-                  <textarea class="textarea" placeholder="Description" required #desc></textarea>
+                  <textarea class="textarea" id="desc" placeholder="Escriba Descripcion..." required #desc></textarea>
                 </div>
               </div>
 
               <div class="form-group">
-                <label>Finalización de la subasta</label>
+                <label for="last">Finalización de la subasta</label>
                 <div class="control">
-                  <input class="input" type="date" required #endTime>
+                  <input class="input" type="date" id="last" required #endTime>
                 </div>
               </div>
 
@@ -85,11 +86,12 @@
                 </div>
               </div>
 
+
+
             </div>
           </div>
         </div>
       </div>
-    </div>
   </div>
 </div>
 

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
@@ -39,6 +39,7 @@ import {AuthService} from './services/auth.service';
 import {ProductoService} from './services/producto.service';
 import {ChatService} from './services/chat.service';
 import {FirestoreService} from './services/firestore.service';
+import { FiltrarTextoPipe } from './pipes/filtrar-texto.pipe';
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([]);
 
@@ -60,7 +61,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([]);
     ChatComponent,
     FormComponent,
     ProductComponent,
-    ProductsListComponent
+    ProductsListComponent,
+    FiltrarTextoPipe
   ],
   imports: [
     BrowserModule,
@@ -68,6 +70,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([]);
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule,
     rootRouting,
     AngularFireAuthModule,

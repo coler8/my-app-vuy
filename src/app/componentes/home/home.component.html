@@ -1,26 +1,25 @@
 <div class="container">
-  <div class="col-md-12" style="margin-top: 50px;">
+  <div class="col-md-12" >
     <h1>Bienvenido a {{ title }}!</h1>
     <img class="animated rubberBand" alt="Logo Vuy" src="../assets/imagenes/vuy.png">
     <h2>Compra, vende productos o incluso puja por ellos!</h2>
 
-    <form class="form-inline" style="padding-top: 20px;">
+
+    <form class="form-inline justify-content-center" style="padding: 50px;">
       <div class="col-lg-4 col-lg-offset-4">
         <i class="fa fa-search" aria-hidden="true"></i>
-        <input class="form-control form-control-sm ml-3 w-75" type="text" name="Buscar" [(ngModel)]="searchterm" (keydown)="search($event)" placeholder="Buscar productos..">
 
-          <table class="table w-auto" cellspacing="0" style="margin-left: 50px;" *ngFor="let producto of products">
-            <tbody>
-            <tr>
-              <td><img [src]="producto.fotoProducto" [alt]="producto.nombre" style="width:45px;height: 35px"  class="img-fluid" ></td>
-              <td><a href="/details/{{producto.id}}">{{producto.nombre}}</a></td>
-            </tr>
-            </tbody>
-          </table>
+        <input class="form-control form-control-sm ml-3 w-75" type="text" name="Buscar" placeholder="Buscar productos..." [(ngModel)]="searchText">
 
-        <div *ngIf="products?.length==0">
-          <p>No se ha encontrado ningun producto.</p>
-        </div>
+        <table *ngIf="searchText.length!=0" class="table w-auto" cellspacing="0" style="margin-left: 50px;" >
+          <tbody>
+          <tr *ngFor="let producto of productos | filtrarTexto: {nombre: searchText}">
+            <td><img [src]="producto.fotoProducto" [alt]="producto.nombre" style="width:45px;height: 35px"  class="img-fluid" ></td>
+            <td><a href="/details/{{producto.id}}">{{producto.nombre}}</a></td>
+          </tr>
+          </tbody>
+        </table>
+
 
       </div>
     </form>

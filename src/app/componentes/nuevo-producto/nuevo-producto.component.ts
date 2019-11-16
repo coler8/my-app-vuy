@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductoService} from '../../services/producto.service';
 import {AuthService} from '../../services/auth.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Router} from '@angular/router';
 import {ProductoInterface} from '../../models/producto';
 
 
@@ -22,6 +22,7 @@ export class NuevoProductoComponent implements OnInit {
     ciudad:'',
     fechaPublicacion:'',
     precio:'',
+    numTlf:'',
     userId:'',
     userNombre:'',
   };
@@ -37,6 +38,7 @@ export class NuevoProductoComponent implements OnInit {
 
 
   onGuardarProducto({value}:{value: ProductoInterface}){
+    console.log(value.nombre + value.ciudad + value.descripcion + value.categoria + value.ciudad + value.numTlf + value.precio);
     if(value.nombre && value.ciudad && value.descripcion && value.categoria && value.ciudad && value.numTlf && value.precio){
       value.fechaPublicacion=(new Date()).getTime();
       this.authService.getAuth().subscribe(user=>{

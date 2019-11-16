@@ -18,8 +18,7 @@ export class HomeComponent implements OnInit {
   productos: ProductoInterface[];
   products;
   allproducts;
-
-  searchterm: string;
+  searchText:string='';
 
   startAt = new Subject();
   endAt = new Subject();
@@ -30,8 +29,7 @@ export class HomeComponent implements OnInit {
   endobs = this.endAt.asObservable();
 
   constructor(private productoService: ProductoService,
-              private afs: AngularFirestore)
-  {}
+              private afs: AngularFirestore) {}
 
   ngOnInit() {
     this.allProducts();
@@ -47,7 +45,10 @@ export class HomeComponent implements OnInit {
 
 
   allProducts() {
-    this.productoService.getAllProducts().subscribe(productos => this.productos = productos);
+    this.productoService.getAllProducts().subscribe(productos => {
+      this.productos = productos;
+      console.log(this.productos);
+    })
   }
 
 

@@ -4,6 +4,7 @@ import {Router } from '@angular/router';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {AuthService} from '../../services/auth.service';
 import {AngularFireAuth} from 'angularfire2/auth';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -12,11 +13,12 @@ import {AngularFireAuth} from 'angularfire2/auth';
   styleUrls: ['./register-page.component.scss']
 })
 export class RegisterPageComponent implements OnInit {
-  public email: string;
-  public password: string;
-  public username:string;
-  public fotoPerfil:string;
-
+  email: string;
+  password: string;
+  username:string;
+  fotoPerfil:string;
+  registerForm: FormGroup;
+  submitted = false;
   message;
   showMessage = false;
 
@@ -25,22 +27,33 @@ export class RegisterPageComponent implements OnInit {
     public router: Router,
     public flashMensaje: FlashMessagesService,
     public af: AngularFireAuth,
+    private formBuilder: FormBuilder
   ) { }
 
-  ngOnInit() {
+  get f() { return this.registerForm.controls; }
 
+  ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      username: ['', [Validators.required]],
+      fotoPerfil: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
   }
 
-  onSubmit(formData) {
-    if(formData.valid) {
+  onSubmitUser() {
+    this.submitted = true;
+    if(this.registerForm.invalid) {
+      return;
+    }else{
       this.af.auth.createUserWithEmailAndPassword(
-        formData.value.email,
-        formData.value.password
+        this.registerForm.value.email,
+        this.registerForm.value.password
       ).then(
         (success) => {
           success.updateProfile({
-            displayName:formData.value.username,
-            photoURL:formData.value.fotoPerfil
+            displayName:this.registerForm.value.username,
+            photoURL:this.registerForm.value.fotoPerfil
           }).catch(
             (err) => {
               this.flashMensaje.show(err.message,
@@ -50,24 +63,11 @@ export class RegisterPageComponent implements OnInit {
         }).catch(
         (err) => {
           this.flashMensaje.show(err.message,
-            {cssClass: 'alert-danger', timeout: 4000});
+            {cssClass: 'alert-danger', timeout: 4000});//TODO quitarlo
         })
-    }else {
-      this.showError({'message': 'Todos los campos son obligatorios .Inténtalo de nuevo.'});
     }
   }
 
-  onSubmitAddUser() {
-    this.authService.registerUser(this.email, this.password)
-    .then((res) => {
-      this.flashMensaje.show('Usuario creado correctamente.',
-      {cssClass: 'alert-success', timeout: 4000});
-     this.router.navigate(['/privado']);
-    }).catch( (err) => {
-      this.flashMensaje.show(err.message,
-      {cssClass: 'alert-danger', timeout: 4000});
-    });
-  }
 
   showError(err) {
     if (err) {

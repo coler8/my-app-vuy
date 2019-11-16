@@ -37,11 +37,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 
     this.auth.getAuth().subscribe(data => {
       if (data) {
-        if (this.adminUsers.indexOf(data['uid']) > -1) {
-          this.isAdmin = true;
-        } else {
-          this.isAdmin = false;
-        }
+        this.isAdmin = this.adminUsers.indexOf(data['uid']) > -1;
         this.currentUid = data['uid'];
       }
     });
@@ -59,11 +55,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   onComprobarUserLogin(){
     this.auth.getAuth().subscribe(user =>{
-      if(user){
-        this.isLogin = true;
-      } else {
-        this.isLogin = false;
-      }
+      this.isLogin = !!user;
     });
   }
 
@@ -103,7 +95,7 @@ export class ProductComponent implements OnInit, OnDestroy {
         this.pujante = this.auth.authState.displayName;
         this.updateDocument('curr_val', [value, this.productData['bid_count']]);
       } else {
-        this.showError({'message': 'Por favor, verifique el valor que ha ingresado. O el valor es menor que el precio base,o el valor incrementado no es correcto.'});
+        this.showError({'message': 'Por favor, verifique el valor que ha ingresado.'});
       }
     } else {
       this.isBidding = true;

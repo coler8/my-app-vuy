@@ -8,11 +8,11 @@ import {User} from 'firebase';
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
-  public isLogin: boolean;
-  public nombreUsuario: string;
-  public emailUsuario: string;
-  public fotoUsuario: string;
-  public numTlf: string;
+  isLogin: boolean;
+  nombreUsuario: string;
+  emailUsuario: string;
+  fotoUsuario: string;
+  numTlf: string;
 
   isAdmin = false;
   adminUsers;
@@ -39,11 +39,7 @@ export class HeaderComponent implements OnInit {
         this.idUsuarioLogueado=auth.uid;
 
         this.adminUsers  = this.authService.getAdmins();
-        if (this.adminUsers == this.idUsuarioLogueado) {
-          this.isAdmin = true;
-        } else {
-          this.isAdmin = false;
-        }
+        this.isAdmin = this.adminUsers == this.idUsuarioLogueado;
       } else {
         this.isLogin = false;
       }
