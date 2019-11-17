@@ -1,12 +1,12 @@
 <div class="col-xs-12 col-md-12" style="margin-top: 15px;">
 <div class="panel panel-default" style="padding: 10px;">
   <div class="panel-heading top-bar">
-  <h1 class="panel-title"><span class="glyphicon glyphicon-comment"></span> Chat</h1>
+  <h1 class="panel-title"><i class="fa fa-comments" aria-hidden="true"></i> Chat</h1>
   </div>
 
 
   <div class="app-mensajes" id="app-mensajes">
-    <div class="panel-body msg_container_base ">
+    <div class="panel-body msg_container_base" style="background-color: white">
 
       <div *ngFor="let chat of chatService.chats"
            [ngClass]="{'text-right z-depth-1': chatService.usuario.uid == chat.uid,
@@ -32,8 +32,8 @@
     <div class="input-group col-lg-11">
       <input class="form-control" type="text" name="" id="btn-input"
              [(ngModel)]="mensaje" placeholder="Escribir mensaje..." (keyup.enter)="enviarMensaje()">
-      <span class="input-group-btn" style="margin-top: -8px;">
-        <button class="btn btn-primary btn-sm" id="btn-chat"><span class="glyphicon glyphicon-share-alt"></span></button>
+      <span class="input-group-btn" style="">
+        <button class="btn btn-primary btn-sm" id="btn-chat" (click)="enviarMensaje()"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
       </span>
     </div>
   </div>

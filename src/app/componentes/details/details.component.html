@@ -1,6 +1,6 @@
 
 <div class="fondo" style="margin-bottom: 100px;">
-<h1 style="margin-left: 50px;">Detalles del producto</h1>
+<h1 style="margin-left: 50px;padding: 10px">Detalles del producto</h1>
 <div class="container dark-grey-text mt-5">
 
   <div class="row wow fadeIn" style="visibility: visible; animation-name: fadeIn;background-color: antiquewhite;">
@@ -39,27 +39,27 @@
         <table class="table" cellspacing="0" style="font-size: 20px">
           <tbody>
           <tr>
-            <th scope="row"><span class="glyphicon glyphicon-shopping-cart"></span> Nombre:</th>
+            <th scope="row"><i class="fa fa-shopping-cart"></i> Nombre:</th>
             <td>{{producto.nombre}}</td>
           </tr>
           <tr>
-            <th scope="row"><span class="glyphicon glyphicon-list-alt"></span> Descripcion:</th>
+            <th scope="row"><i class="fa fa-list-alt"></i> Descripción:</th>
             <td>{{producto.descripcion}}</td>
           </tr>
           <tr>
-            <th scope="row"><span class="glyphicon glyphicon-tag"></span> Categoria:</th>
+            <th scope="row"><i class="fa fa-tag"></i> Categoría:</th>
             <td>{{producto.categoria}}</td>
           </tr>
           <tr>
-            <th scope="row"><span class="glyphicon glyphicon-home"></span> Ciudad</th>
+            <th scope="row"><i class="fa fa-home"></i> Ciudad</th>
             <td>{{producto.ciudad}}</td>
           </tr>
           <tr>
-            <th scope="row"><span class="glyphicon glyphicon-earphone"></span> Teléfono de contacto</th>
+            <th scope="row"><i class="fa fa-phone"></i> Teléfono de contacto</th>
             <td>{{producto.numTlf}}</td>
           </tr>
           <tr>
-            <th scope="row"><span class="glyphicon glyphicon-calendar"></span>Producto añadido</th>
+            <th scope="row"><i class="fa fa-calendar"></i> Producto añadido</th>
             <td><p class="blog-post-meta">{{producto.fechaPublicacion  | date: 'dd-MMM'}}
               Por <a href="">{{ producto.userNombre}}</a></p><td>
           </tr>
@@ -74,7 +74,7 @@
   <div class="row d-flex justify-content-center wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
     <div class="col-md-6 text-center">
 
-      <h4 class="my-4 h4"><span class="glyphicon glyphicon-comment"></span>  Chatear con el vendedor</h4>
+      <h4 class="my-4 h4"><i class="fa fa-comment"></i> Chatear con el vendedor</h4>
 
       <button routerLink="/login" routerLinkActive="active" type="button" class="btn btn-primary" *ngIf="!isLogin">Iniciar sesion</button>
 

@@ -1,13 +1,13 @@
 
-<div class="profile-page " style="margin-bottom: 100px;">
+<div class="profile-page " style="padding: 20px">
   <div class="user-info" style="background-color: transparent;">
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-10 offset-md-1 z-depth-2 text-center" style="background: url('https://orig00.deviantart.net/a2f1/f/2008/073/8/a/pattern_wallpaper_by_invaderjohn.jpg')">
 
-          <img src="{{fotoUsuario}}" alt="Foto usuario" class="rounded mx-auto d-block" style="margin-top: 20px;border: 5px solid white;width: 20%" />
+          <img src="{{fotoUsuario}}" class="rounded-circle" alt="Foto usuario" style="margin-top: 20px;width: 15%" />
           <h4 style="color: white;font-weight: bold;margin-top: 10px">{{ nombreUsuario }}</h4>
-          <h4 style="margin-bottom: 20px;color: white">{{ emailUsuario }}</h4>
+          <h5 style="margin-bottom: 20px;color: white">{{ emailUsuario }}</h5>
         </div>
 
       </div>
@@ -16,7 +16,8 @@
 
 
 
-  <div class="container">
+
+  <div class="container" style="padding: 10px">
     <div class="row">
       <div class="col-xs-12 col-md-10 offset-md-1">
         <div class="articles-toggle">
@@ -34,54 +35,56 @@
       </div>
     </div>
 
-    <div class="container">
-          <div class="col-xs-12 col-md-10 offset-md-1 z-depth-1" style="background-color: gainsboro;">
-            <div class="columns is-marginless" *ngIf="!hasProducts && !isAdmin">
-              <div class="column is-12">
-                <div class="box">
-                  <div class="section">
-                    <p class="has-text-centered">
-                      <span class="icon"><i class="fa fa-4x fa-exclamation-circle" aria-hidden="true"></i></span>
-                    </p>
-                    <p class="heading is-size-6 has-text-centered">No tienes productos</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row card-group" *ngFor="let producto of productos">
-                <div class="col-lg-3 col-md-6 mb-4" *ngIf="idUsuarioLogueado == producto.userId || isAdmin">
-                  <div class="col">
-                    <strong class=" mb-5 text-primary">
-                    <span class="badge badge-pill badge-dark">{{producto.categoria}}</span>
-                  </strong>
-                    <img style="width: 80px;height: 70px" src="{{producto.fotoProducto}}" class="rounded-circle" alt="foto Producto">
-                     <a style="display: block;" href="/details/{{producto.id}}"> {{producto.nombre}} </a>
-                  </div>
-                </div>
-            </div>
-
-          </div>
-    </div>
-    <hr>
-    <div class="container" >
-      <div class="col-xs-12 col-md-10 offset-md-1 ">
-          <div>
-            <button [disabled]="isTracking" class="btn btn-primary" (click)="findMe()">Localizarme</button>
-          </div>
-          <br>
-          <div class="row" style="border: 2px groove;border-radius: 5px;">
-            <div class="col-md-12" style="margin-top: 8px;">
-              <div class="text-center">
-                <h3>
-                  <div #gmap style="width:100%;height:300px"></div>
-                </h3>
-              </div>
+    <div class="col-xs-12 col-md-10 offset-md-1 z-depth-1" style="background-color: gainsboro;text-align: center">
+      <div class="columns is-marginless" *ngIf="!hasProducts && !isAdmin">
+        <div class="column is-12">
+          <div class="box">
+            <div class="section">
+              <p class="has-text-centered">
+                <span class="icon"><i class="fa fa-4x fa-exclamation-circle" aria-hidden="true"></i></span>
+              </p>
+              <p class="heading is-size-6 has-text-centered">No tienes productos</p>
             </div>
           </div>
         </div>
+      </div>
+
+
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 mb-4" *ngFor="let producto of productos" style="padding: 20px;">
+          <ng-container *ngIf="idUsuarioLogueado == producto.userId || isAdmin">
+              <strong class="mb-5 text-primary">
+                <span class="badge badge-pill badge-dark">{{producto.categoria}}</span>
+              </strong>
+              <img style="width: 80px;height: 70px" src="{{producto.fotoProducto}}" class="rounded-circle" alt="foto Producto">
+              <a style="display: block;" href="/details/{{producto.id}}"> {{producto.nombre}} </a>
+          </ng-container>
+          </div>
+
+        </div>
+
+
     </div>
-        <router-outlet></router-outlet>
+
+    <hr>
+
+    <div class="col-xs-12 col-md-10 offset-md-1 ">
+        <div>
+          <button [disabled]="isTracking" class="btn btn-primary" (click)="findMe()">Localizarme</button>
+        </div>
+        <br>
+        <div class="row" style="border: 2px groove;border-radius: 5px;">
+          <div class="col-md-12" style="margin-top: 8px;">
+            <div class="text-center">
+              <h3>
+                <div #gmap style="width:100%;height:300px"></div>
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
     </div>
   </div>

@@ -60,7 +60,8 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   navigateBack() {
-    this.location.back();
+    // this.location.back();
+    this.router.navigate(['/producto_pujas']);
   }
 
   editOffer() {

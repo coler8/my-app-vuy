@@ -1,9 +1,12 @@
 import { Location } from '@angular/common';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {FirestoreService} from '../../services/firestore.service';
+import moment = require('moment');
+import {ProductoInterface} from '../../models/producto';
+import {ProductoPujaInterface} from '../../models/producto_puja';
 
 @Component({
   selector: 'app-form',
@@ -18,6 +21,18 @@ export class FormComponent implements OnInit, OnDestroy {
   dataSubscription;
   productData = {};
   user;
+  today;
+  producto:ProductoPujaInterface = {
+    name:'',
+    photo: '',
+    category:'',
+    base_val:'',
+    increment:'',
+    desc:'',
+    endtime:''
+  };
+
+
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -28,6 +43,8 @@ export class FormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    console.log(this.producto);
+    this.today=moment().add(1, 'days').format('YYYY-MM-DD');
     this.authService.getAuth().subscribe(data => {
       if (data) {
         this.user = data;
@@ -56,6 +73,19 @@ export class FormComponent implements OnInit, OnDestroy {
           (document.querySelector('input[type="date"]') as HTMLInputElement).value = this.productData['endtime'];
           descField.value = this.productData['desc'];
           category.value = this.productData['category'].charAt(0).toUpperCase() + this.productData['category'].slice(1);
+
+          this.producto = {
+            name:inputs[0].value,
+            photo: inputs[1].value,
+            category: category.value,
+            base_val:inputs[2].value,
+            increment:inputs[3].value,
+            desc:descField.value,
+            endtime:(document.querySelector('input[type="date"]') as HTMLInputElement).value
+          };
+
+          console.log(this.producto);
+
         }
       });
     } else {
@@ -63,8 +93,8 @@ export class FormComponent implements OnInit, OnDestroy {
     }
   }
 
-  addProduct(name, imagen, category, base_val, increment, desc, endtime) {
-    if (name && imagen && category && base_val && increment && desc && endtime) {
+  addProduct(name, photo, category, base_val, increment, desc, endtime) {
+    if (name && photo && category && base_val && increment && desc && endtime) {
 
       const endTime = new Date(endtime);
       if (endTime < new Date()) {
@@ -75,7 +105,7 @@ export class FormComponent implements OnInit, OnDestroy {
       if (this.editMode) {
         postObj = {
           'name': name,
-          'photo': imagen,
+          'photo': photo,
           'desc': desc,
           'base_price': Number(base_val),
           'increment': Number(increment),
@@ -88,7 +118,7 @@ export class FormComponent implements OnInit, OnDestroy {
           'desc': desc,
           'base_price': Number(base_val),
           'increment': Number(increment),
-          'photo': imagen,
+          'photo': photo,
           'category': category.toLowerCase(),
           'curr_val': null,
           'author_uid': this.user.uid,
@@ -110,7 +140,7 @@ export class FormComponent implements OnInit, OnDestroy {
         });
       }
     } else {
-      this.showError({'message': 'Todos los campos son obligatorios .Inténtalo de nuevo.'});
+      this.showError({'message': 'Comprueba los campos introducidos.'});
     }
   }
   formCancel() {

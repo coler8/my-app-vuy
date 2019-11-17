@@ -17,7 +17,7 @@
                 <label for="email"><strong>Email:</strong></label>
 
                 <input type="text" formControlName="email" name="email" id="email" class="form-control" placeholder="Escriba email..."  [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="submitted && f.email.errors" class="alert alert-danger">
                   <div *ngIf="f.email.errors.required">Email es requerido</div>
                   <div *ngIf="f.email.errors.email">El email debe ser válido</div>
                 </div>
@@ -28,7 +28,7 @@
                 <label for="password"><strong>Contraseña:</strong></label>
 
                 <input type="password" formControlName="password" name="password" id="password" placeholder="Escriba Contraseña..."  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="submitted && f.password.errors" class="alert alert-danger">
                   <div *ngIf="f.password.errors.required">Contraseña requerida</div>
                 </div>
 

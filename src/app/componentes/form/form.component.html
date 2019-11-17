@@ -15,83 +15,89 @@
         <div class="card-body" >
           <div class="col-md-6 offset-md-3">
             <div class="form-group">
-                <label for="nombre">Nombre del producto</label>
-                <div class="control">
-                  <input class="input" type="text" id="nombre" required #name>
-                </div>
+              <label for="name">Nombre del producto</label>
+              <input class="input" type="text" id="name" #name="ngModel" [(ngModel)]="producto.name"  required >
+              <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                <div *ngIf="name.errors.required">Nombre del producto requerido.</div>
               </div>
-
-              <div class="form-group">
-                <label for="imagen">Imagen del producto</label>
-                <input class="input" type="text" id="imagen" required #imagen>
-              </div>
-
-              <div class="form-group">
-                <label for="cat">Categoría</label>
-                <div class="control">
-                  <div class="select">
-                    <select id="cat" #category>
-                      <option>Movil</option>
-                      <option>Ordenador</option>
-                      <option>Videoconsola</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="price">Precio base</label>
-                <div class="field  has-addons">
-                  <p class="control">
-                    <span class="select">
-                        <select id="price">
-                          <option>€</option>
-                          <option>$</option>
-                          <option>£</option>
-                        </select>
-                     </span>
-                  </p>
-                  <p class="form-group">
-                    <input class="input" type="number"  required #base>
-                  </p>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inc">Incremento mínimo</label>
-                <div class="control">
-                  <input class="input" type="number" id="inc" required #increment>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="desc">Descripción</label>
-                <div class="control">
-                  <textarea class="textarea" id="desc" placeholder="Escriba Descripcion..." required #desc></textarea>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="last">Finalización de la subasta</label>
-                <div class="control">
-                  <input class="input" type="date" id="last" required #endTime>
-                </div>
-              </div>
-
-              <div class="field is-grouped">
-                <div class="control">
-                  <button class="button bd-tw-button" (click)="addProduct(name.value, imagen.value,category.value, base.value,
-                  increment.value,desc.value, endTime.value)">
-                    {{editMode ? 'Actualizar' : 'Enviar'}}</button>
-                </div>
-                <div class="control">
-                  <button class="button is-text" (click)="formCancel()">Cancelar</button>
-                </div>
-              </div>
-
-
-
             </div>
+
+
+
+            <div class="form-group">
+              <label for="photo">Imagen del producto</label>
+              <input class="input" type="text" id="photo" #photo="ngModel" pattern="https?://.+" [(ngModel)]="producto.photo" required>
+              <div *ngIf="photo.invalid && (photo.dirty || photo.touched)" class="alert alert-danger">
+                <div *ngIf="photo.errors.required">Imagen del producto requerida.</div>
+                <div *ngIf="photo.errors.pattern">Introduce una URL correcta.</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="category">Categoría:</label>
+              <select name="category" id="category" class="form-control" #category required>
+                <option>Móvil</option>
+                <option>Videoconsola</option>
+                <option>Ordenador</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="base_val">Precio base:</label>
+              <input type="text" class="form-control" id="base_val" name="base_val" #base_val="ngModel" pattern="^\d+\.?\d*$" [(ngModel)]="producto.base_val" >
+              <div *ngIf="base_val.invalid && base_val.touched" class="alert alert-danger">
+                <div *ngIf="base_val.errors.required">Precio base requerida.</div>
+                <div *ngIf="base_val.errors.pattern">Introduce un número positivo.</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="increment">Incremento mínimo</label>
+              <div class="control">
+                <input class="form-control" type="text" id="increment" #increment="ngModel" pattern="^\d+\.?\d*$" [(ngModel)]="producto.increment" >
+                <div *ngIf="increment.invalid && (increment.dirty || increment.touched)" class="alert alert-danger">
+                  <div *ngIf="increment.errors.required">Incremento mínimo requerida.</div>
+                  <div *ngIf="increment.errors.pattern">Introduce un número positivo.</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="desc">Descripción</label>
+              <div class="control">
+                <textarea class="textarea" id="desc" placeholder="Escriba Descripcion..." #desc="ngModel"  [(ngModel)]="producto.desc" required ></textarea>
+                <div *ngIf="desc.invalid && desc.touched" class="alert alert-danger">
+                  <div *ngIf="desc.errors.required">Descripción requerida.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="endtime">Finalización de la subasta</label>
+              <div class="control">
+                <input class="input" type="date" id="endtime" [min]="today"  required #endtime="ngModel"  [(ngModel)]="producto.endtime">
+                <div *ngIf="endtime.invalid && (endtime.dirty || endtime.touched)" class="alert alert-danger">
+                  <div *ngIf="endtime.errors.required">Fecha finalización requerida.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="field is-grouped">
+              <div class="control">
+                <button class="button bd-tw-button" (click)="addProduct(name.value, photo.value,category.value, base_val.value,
+                  increment.value,desc.value, endtime.value)">
+                  {{editMode ? 'Actualizar' : 'Enviar'}}</button>
+              </div>
+              <div class="control">
+                <button class="button is-text" (click)="formCancel()">Cancelar</button>
+              </div>
+            </div>
+
+
+
           </div>
         </div>
       </div>
+    </div>
   </div>
 </div>
 

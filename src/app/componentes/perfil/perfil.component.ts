@@ -21,7 +21,7 @@ export class PerfilComponent implements OnInit {
   isAdmin = false;
   adminUsers;
 
-  productos: ProductoInterface[];
+  productos;
   hasProducts: boolean = false;
 
   @ViewChild('gmap') gmapElement: any;
@@ -43,6 +43,7 @@ export class PerfilComponent implements OnInit {
     this.onComprobarLoginUser();
     this.onComprobarUserLogin1();
     this.getAllMyProducts();
+    this.productos=[];
 
     var mapProp = {
       center: new google.maps.LatLng(38.3792700, -0.4814900),
@@ -63,11 +64,7 @@ export class PerfilComponent implements OnInit {
         this.idUsuarioLogueado=auth.uid;
 
         this.adminUsers  = this.authService.getAdmins();
-        if (this.adminUsers == this.idUsuarioLogueado) {
-          this.isAdmin = true;
-        } else {
-          this.isAdmin = false;
-        }
+        this.isAdmin = this.adminUsers == this.idUsuarioLogueado;
       } else {
         this.isLogin = false;
       }
@@ -84,12 +81,24 @@ export class PerfilComponent implements OnInit {
 
   getAllMyProducts(){
       this.productoService.getAllProducts().subscribe(productos => {
-        if(productos && productos.length){
-          this.productos = productos;
-          this.hasProducts = this.productos.some(prod => prod.userId == this.idUsuarioLogueado);
+        console.log(productos);
+        if(productos && productos.length) {
+          for (let producto of productos) {
+            if (this.idUsuarioLogueado == producto.userId && !this.isAdmin) {
+              console.log('el q pasa la prueba', producto)
+              this.productos.push(producto);
+              this.hasProducts = this.productos.some(prod => prod.userId == this.idUsuarioLogueado);
+              console.log(this.productos);
+            }else if(this.isAdmin){
+              this.productos=productos;
+            }
+          }
         }else {
           this.productos = [];
         }
+
+
+
       });
   }
 
