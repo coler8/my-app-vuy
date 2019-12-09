@@ -1,7 +1,7 @@
-<div class="mask rgba-indigo-strong" style="padding: 50px;">
+<div class="mask rgba-indigo-strong" >
   <div class="container">
     <div class="d-flex justify-content-center">
-      <div class="card animated fadeInLeft" style="width: 65%">
+      <div class="card animated fadeInLeft">
         <div class="card-header" style="background-color: #d9edf7;">
           Registrarse
         </div>
@@ -11,7 +11,6 @@
             <div class="container" style="padding: 10px;">
               <h1 class="text-center"><span class="fa fa-user-plus" style="font-size: 40px;"></span> Registro</h1>
             </div>
-
 
             <form [formGroup]="registerForm" (ngSubmit)="onSubmitUser()">
 
@@ -46,7 +45,7 @@
                 <input type="password" formControlName="password" name="password" id="password" placeholder="Escriba Contraseña..."  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
                 <div *ngIf="submitted && f.password.errors" class="alert alert-danger">
                   <div *ngIf="f.password.errors.required">Contraseña requerida</div>
-                  <div *ngIf="f.password.errors.minlength">La contraseña debe tener al menos 6 carácteres.</div>
+                  <div *ngIf="f.password.errors.minlength">La contraseña debe tener al menos 6 caracteres.</div>
                 </div>
 
               </div>

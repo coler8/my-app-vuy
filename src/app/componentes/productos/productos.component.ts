@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductoService} from '../../services/producto.service';
 import {ProductoInterface} from '../../models/producto';
-import {AngularFirestore} from 'angularfire2/firestore';
-import {AngularFireDatabase} from 'angularfire2/database';
 import * as _ from 'lodash';
 
 @Component({
@@ -32,12 +30,23 @@ export class ProductosComponent implements OnInit {
 
 
   allProducts() {
-    this.productoService.getAllProducts().subscribe(productos => {this.productos = productos;this.applyFilters()});
+    this.productoService.getAllProducts().subscribe(productos => {
+      this.productos = productos;
+      console.log(this.productos);
+      this.applyFilters()
+    });
   }
 
 
   private applyFilters() {
-    this.filteredProducts = _.filter(this.productos, _.conforms(this.filters))
+    this.filteredProducts = _.filter(this.productos, _.conforms(this.filters));
+    this.filteredProducts.sort((a,b)=>{
+      if(a.fechaPublicacion < b.fechaPublicacion){
+        return 1;
+      }else {
+        return -1;
+      }
+    })
   }
 
   filterExact(property: string, rule: any) {

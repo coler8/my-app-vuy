@@ -13,19 +13,19 @@
         Todos los productos</a>
       </li>
       <li>
-        <label for="inputFilt">Categorias</label>
-        <div class="select">
-          <select id="inputFilt" [(ngModel)]="categoria" (change)="filterExact('categoria', categoria)">
-            <option value="Movil">Movil</option>
+        <label for="inputFilt">Categorías:</label>
+        <div class="form-group">
+          <select id="inputFilt" class="form-control" [(ngModel)]="categoria" (change)="filterExact('categoria', categoria)">
+            <option value="Móvil">Móvil</option>
             <option value="Ordenador">Ordenador</option>
             <option value="Videoconsola">Videoconsola</option>
           </select>
         </div>
       </li>
       <li>
-        <label for="inputFilt1">Ciudad</label>
-        <div class="select">
-          <select id="inputFilt1" [(ngModel)]="ciudad" (change)="filterExact('ciudad', ciudad)">
+        <label for="inputFilt1">Ciudad:</label>
+        <div class="form-group">
+          <select id="inputFilt1" class="form-control" [(ngModel)]="ciudad" (change)="filterExact('ciudad', ciudad)">
             <option value="Elche">Elche</option>
             <option value="Alicante">Alicante</option>
             <option value="San Juan">San Juan</option>
@@ -34,14 +34,11 @@
         </div>
       </li>
       <li>
-        <label>Precio menor a:</label>
-        <input class="form-control" type="number"
-               [(ngModel)]="precio"
-               (change)="filterLessThan('precio', precio)">
+        <label for="price">Precio menor a:</label>
+        <input class="form-control" id="price" type="number" [(ngModel)]="precio" (change)="filterLessThan('precio', precio)">
         <br>
 
-        <button class="form-control" *ngIf="categoria || ciudad || precio"
-                (click)="removeFilter('categoria') || removeFilter('ciudad') || removeFilter('precio')">
+        <button class="form-control" *ngIf="categoria || ciudad || precio" (click)="removeFilter('categoria') || removeFilter('ciudad') || removeFilter('precio')">
           Eliminar filtros
         </button>
       </li>
@@ -51,7 +48,7 @@
 
 <div class="column">
   <div class="columns is-marginless is-multiline">
-    <div class="column is-one-third-desktop is-half-tablet item" *ngFor="let producto of filteredProducts">
+    <div class="column is-one-third-desktop is-half-tablet item" *ngFor="let producto of filteredProducts ">
       <div class="card">
 
           <div class="hovereffect">

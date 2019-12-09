@@ -1,20 +1,37 @@
-.section {
-    padding: 1.5rem !important;
-}
 
-@media screen and (max-width: 767px) {
-    .section {
-        padding: 0 !important;
-        .box {
-            border-radius: 0 !important;
-        }
-    }
+label{
+  font-weight:bold
 }
 
 .card{
   width: 60%;
 }
 
-label{
-  font-weight:bold
+
+.mask{
+  padding: 50px;
+}
+
+@media (max-width: 576px) {
+
+  .mask{
+    padding: 10px;
+  }
+
+  .card{
+    width: 100%;
+  }
+
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .mask{
+    padding: 10px;
+  }
+
+  .card{
+    width: 100%;
+  }
+
+
 }

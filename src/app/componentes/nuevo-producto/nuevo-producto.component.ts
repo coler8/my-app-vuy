@@ -18,8 +18,8 @@ export class NuevoProductoComponent implements OnInit {
     nombre: '',
     fotoProducto:'',
     descripcion:'',
-    categoria:'',
-    ciudad:'',
+    categoria:'Móvil',
+    ciudad:'Alicante',
     fechaPublicacion:'',
     precio:'',
     numTlf:'',
@@ -38,16 +38,14 @@ export class NuevoProductoComponent implements OnInit {
 
 
   onGuardarProducto({value}:{value: ProductoInterface}){
-    console.log(value.nombre + value.ciudad + value.descripcion + value.categoria + value.ciudad + value.numTlf + value.precio);
     if(value.nombre && value.ciudad && value.descripcion && value.categoria && value.ciudad && value.numTlf && value.precio){
       value.fechaPublicacion=(new Date()).getTime();
       this.authService.getAuth().subscribe(user=>{
         value.userId=user.uid;
         value.userNombre=user.displayName;
         this.productoService.addNewProduct(value);
-        console.log(value);
       });
-      this.router.navigate(['/']);
+      this.router.navigate(['/productos']);
     }else{
         this.showError({'message': 'Todos los campos son obligatorios .Inténtalo de nuevo.'});
     }

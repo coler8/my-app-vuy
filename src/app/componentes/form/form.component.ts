@@ -1,11 +1,9 @@
 import { Location } from '@angular/common';
-
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {FirestoreService} from '../../services/firestore.service';
-import moment = require('moment');
-import {ProductoInterface} from '../../models/producto';
+import * as moment from 'moment';
 import {ProductoPujaInterface} from '../../models/producto_puja';
 
 @Component({
@@ -43,7 +41,6 @@ export class FormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log(this.producto);
     this.today=moment().add(1, 'days').format('YYYY-MM-DD');
     this.authService.getAuth().subscribe(data => {
       if (data) {
@@ -83,8 +80,6 @@ export class FormComponent implements OnInit, OnDestroy {
             desc:descField.value,
             endtime:(document.querySelector('input[type="date"]') as HTMLInputElement).value
           };
-
-          console.log(this.producto);
 
         }
       });

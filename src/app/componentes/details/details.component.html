@@ -1,17 +1,20 @@
 
-<div class="fondo" style="margin-bottom: 100px;">
+
 <h1 style="margin-left: 50px;padding: 10px">Detalles del producto</h1>
-<div class="container dark-grey-text mt-5">
+<div class="container">
 
-  <div class="row wow fadeIn" style="visibility: visible; animation-name: fadeIn;background-color: antiquewhite;">
+  <div class="row wow fadeIn" style="background-color: antiquewhite;border: 1px solid burlywood;">
 
-    <div class="col-md-6 mb-4 z-depth-2">
+    <div class="col align-self-center">
+      <div class="container text-center " style="padding: 20px;">
+        <h1><strong>{{producto.nombre}}</strong></h1>
+      </div>
       <div class="view zoom">
-          <img [src]="producto.fotoProducto" [alt]="producto.nombre" class="img-fluid" style="margin: 105px auto auto;width: 500px;height: 300px;">
+          <img [src]="producto.fotoProducto" [alt]="producto.nombre" class="img-fluid" style="width: 500px;height: 350px;">
       </div>
     </div>
 
-    <div class="col-md-6 mb-4 z-depth-1">
+    <div class="col-md-6 mb-4">
       <div class="p-4">
 
         <div class="mb-3">
@@ -36,12 +39,8 @@
 
         <span class="badge blue mr-1" style="font-size: 30px;margin-left: 20px;margin-bottom: 20px;">{{producto.precio +" €"}}</span>
 
-        <table class="table" cellspacing="0" style="font-size: 20px">
+        <table class="table" cellspacing="0">
           <tbody>
-          <tr>
-            <th scope="row"><i class="fa fa-shopping-cart"></i> Nombre:</th>
-            <td>{{producto.nombre}}</td>
-          </tr>
           <tr>
             <th scope="row"><i class="fa fa-list-alt"></i> Descripción:</th>
             <td>{{producto.descripcion}}</td>
@@ -61,7 +60,7 @@
           <tr>
             <th scope="row"><i class="fa fa-calendar"></i> Producto añadido</th>
             <td><p class="blog-post-meta">{{producto.fechaPublicacion  | date: 'dd-MMM'}}
-              Por <a href="">{{ producto.userNombre}}</a></p><td>
+              Por {{ producto.userNombre}}</p><td>
           </tr>
           </tbody>
         </table>
@@ -89,5 +88,4 @@
 
 </div>
 
-</div>
 

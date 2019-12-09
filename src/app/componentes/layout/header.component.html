@@ -8,9 +8,6 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent" >
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link m-2 menu-item" routerLink="/">Home</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link m-2 menu-item" routerLink="/productos">Productos</a>
       </li>
       <li class="nav-item">
@@ -20,7 +17,7 @@
         <a class="nav-link m-2 menu-item" routerLink="/producto_pujas">Pujar por Producto!</a>
       </li>
     </ul>
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="derecho nav navbar-nav navbar-right">
       <ng-container *ngIf="!isLogin">
         <li class="nav-item">
           <a class="nav-link m-2 menu-item" routerLink="/login" routerLinkActive="active"><i class="fa fa-user-circle"></i>Anónimo</a>

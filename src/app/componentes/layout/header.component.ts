@@ -5,7 +5,9 @@ import {User} from 'firebase';
 
 @Component({
   selector: 'app-layout-header',
-  templateUrl: './header.component.html'
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
+
 })
 export class HeaderComponent implements OnInit {
   isLogin: boolean;
@@ -13,7 +15,6 @@ export class HeaderComponent implements OnInit {
   emailUsuario: string;
   fotoUsuario: string;
   numTlf: string;
-
   isAdmin = false;
   adminUsers;
   idUsuarioLogueado: string;

@@ -20,10 +20,6 @@
     cursor: pointer;
 }
 
-// .is-active {
-//     background-color: whitesmoke !important;
-//     color: #363636 !important;
-// }
 .sort-dropdown {
     float: right;
 }
@@ -110,4 +106,43 @@
   filter: alpha(opacity=100);
   -webkit-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
+}
+
+.card-img-top{
+  width: 300px;
+  height: 200px;
+}
+
+
+
+
+@media (max-width: 576px) {
+  .menu-column{
+    max-width: 100%;
+  }
+
+  .card-img-top{
+    width: 100%;
+    height: 100%;
+  }
+
+  .selecto{
+    font-size: 10px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .menu-column{
+    max-width: 100%;
+  }
+
+  .card-img-top{
+    width: 100%;
+    height: 100%;
+  }
+  .selecto{
+    font-size: 10px;
+  }
 }

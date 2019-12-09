@@ -129,3 +129,18 @@ ul{
   transition-delay:.2s;
 }
 
+
+@media (max-width: 576px) {
+  .menu-column{
+    max-width: 100%;
+  }
+
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+
+  .menu-column{
+    max-width: 100%;
+  }
+}
+

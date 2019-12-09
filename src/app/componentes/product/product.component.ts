@@ -24,6 +24,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   pujante;
   isAdmin = false;
   isLogin: boolean;
+  finalizado:boolean;
 
   constructor(
     private fService: FirestoreService,
@@ -44,6 +45,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.finalizado=false;
     this.onComprobarUserLogin();
     this.dataSubscription = this.fService.getDocuments(this.currentProductId).subscribe(data => {
       if (data && data.length) {
@@ -83,6 +85,7 @@ export class ProductComponent implements OnInit, OnDestroy {
     console.log(bidEndDate + '   ' + currentDate);
     if (bidEndDate <= currentDate) {
       console.log('Ha finalizado el plazo');
+      this.finalizado=true;
       return;
     }
 

@@ -1,28 +1,34 @@
-<div class="container">
+<div class="container" style="padding: 40px">
   <div class="col-md-12" >
     <h1>Bienvenido a {{ title }}!</h1>
     <img class="animated rubberBand" alt="Logo Vuy" src="../assets/imagenes/vuy.png">
     <h2>Compra, vende productos o incluso puja por ellos!</h2>
-
-
-    <form class="form-inline justify-content-center" style="padding: 50px;">
-      <div class="col-lg-4 col-lg-offset-4">
-        <i class="fa fa-search" aria-hidden="true"></i>
-
-        <input class="form-control form-control-sm ml-3 w-75" type="text" name="Buscar" placeholder="Buscar productos..." [(ngModel)]="searchText">
-
-        <table *ngIf="searchText.length!=0" class="table w-auto" cellspacing="0" style="margin-left: 50px;" >
-          <tbody>
-          <tr *ngFor="let producto of productos | filtrarTexto: {nombre: searchText}">
-            <td><img [src]="producto.fotoProducto" [alt]="producto.nombre" style="width:45px;height: 35px"  class="img-fluid" ></td>
-            <td><a href="/details/{{producto.id}}">{{producto.nombre}}</a></td>
-          </tr>
-          </tbody>
-        </table>
-
-
-      </div>
-    </form>
   </div>
+
+
+  <div class="col-md-6 offset-md-3" style="padding: 15px">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></span>
+          </div>
+          <input class="form-control" type="text" name="Buscar" placeholder="Buscar productos..." [(ngModel)]="searchText">
+          <table class="table table-hover" *ngIf="searchText.length!=0" cellspacing="0"  style="background-color: antiquewhite">
+            <tbody>
+            <ng-container *ngIf="(productos | filtrarTexto: searchText).length > 0; else noResults">
+            <tr *ngFor="let producto of productos | filtrarTexto: searchText">
+              <td><img [src]="producto.fotoProducto" [alt]="producto.nombre" style="width:50px;height: 40px"  class="img-fluid" ></td>
+              <td><a href="/details/{{producto.id}}">{{producto.nombre}}</a></td>
+            </tr>
+            </ng-container>
+            </tbody>
+          </table>
+
+          <ng-template #noResults>
+            <p style="margin-top: 15px">No se ha encontrado ningún producto.</p>
+          </ng-template>
+        </div>
+  </div>
+
 </div>
+
 

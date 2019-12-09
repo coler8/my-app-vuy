@@ -11,6 +11,6 @@ export const environment = {
     databaseURL: "https://vuyapp-proyecto.firebaseio.com",
     projectId: "vuyapp-proyecto",
     storageBucket: "",
-    messagingSenderId: "821869491165"
+    messagingSenderId: "821869491168"
   }
 };

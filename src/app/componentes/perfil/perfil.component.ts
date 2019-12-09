@@ -81,14 +81,11 @@ export class PerfilComponent implements OnInit {
 
   getAllMyProducts(){
       this.productoService.getAllProducts().subscribe(productos => {
-        console.log(productos);
         if(productos && productos.length) {
           for (let producto of productos) {
             if (this.idUsuarioLogueado == producto.userId && !this.isAdmin) {
-              console.log('el q pasa la prueba', producto)
               this.productos.push(producto);
               this.hasProducts = this.productos.some(prod => prod.userId == this.idUsuarioLogueado);
-              console.log(this.productos);
             }else if(this.isAdmin){
               this.productos=productos;
             }
@@ -96,9 +93,6 @@ export class PerfilComponent implements OnInit {
         }else {
           this.productos = [];
         }
-
-
-
       });
   }
 

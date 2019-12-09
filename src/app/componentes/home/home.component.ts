@@ -47,18 +47,7 @@ export class HomeComponent implements OnInit {
   allProducts() {
     this.productoService.getAllProducts().subscribe(productos => {
       this.productos = productos;
-      console.log(this.productos);
     })
-  }
-
-
-  search($event) {
-    if ($event.timeStamp - this.lastKeypress > 100) {
-      let q = $event.target.value;
-      this.startAt.next(q);
-      this.endAt.next(q+"\uf8ff");
-    }
-    this.lastKeypress = $event.timeStamp
   }
 
 

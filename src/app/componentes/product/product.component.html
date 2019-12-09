@@ -6,7 +6,7 @@
                     <span class="icon">
                             <i class="fa fa-chevron-left" aria-hidden="true"></i>
                     </span>
-                    <span>Atras</span>
+                    <span>Atrás</span>
                 </a>
                 <a class="button is-inverted is-primary" *ngIf="isAuthor || isAdmin" (click)="editOffer()">
                     <span class="icon">
@@ -60,28 +60,27 @@
 
                   <div class="bid-section" *ngIf="!isAuthor && isLogin">
                         <div class="columns is-marginless is-vcentered is-centered">
-                            <div class="column is-6">
+                            <div class="column">
                                 <p class="heading is-size-5 has-text-centered">
                                     <strong *ngIf="!productData?.curr_val">Hacer primera puja</strong>
-                                    <strong *ngIf="productData?.curr_val">Actual puja:
-                                      {{productData?.curr_val +'  '}}<i class="fa fa-eur" aria-hidden="true"></i></strong>
+                                    <strong *ngIf="productData?.curr_val">Actual puja:{{productData?.curr_val +'€'}}</strong>
                                 </p>
                             </div>
                             <div class="column is-6">
-                                <a class="button is-primary is-large bid-button" (click)="bidNow()" *ngIf="!isBidding">
-                                    <span class="icon"><i class="fa fa-gavel" aria-hidden="true"></i></span>
-                                    <span>PUJAR</span>
-                                </a>
+                              <a class="button is-primary is-large bid-button" (click)="bidNow()" *ngIf="!isBidding">
+                                  <span class="icon"><i class="fa fa-gavel" aria-hidden="true"></i></span>
+                                  <span>PUJAR</span>
+                              </a>
+                               <div class="alert alert-danger" *ngIf="finalizado">
+                                 La subasta ha finalizado.
+                               </div>
+
+
+
+
                                 <div class="field has-addons" *ngIf="isBidding">
                                     <p class="control">
-                                        <span class="select">
-                                            <select>
-                                              <option>€</option>
-                                            </select>
-                                          </span>
-                                    </p>
-                                    <p class="control">
-                                        <input class="input" type="number" placeholder="Hacer apuesta" #bid>
+                                        <input class="input" type="number" placeholder="Añadir apuesta" #bid>
                                     </p>
                                     <p class="control">
                                         <a class="button is-primary" (click)="bidNow(bid.value)">
@@ -92,14 +91,12 @@
                                         </a>
                                     </p>
                                 </div>
+
                             </div>
                         </div>
                         <div class="columns is-marginless" *ngIf="showMessage">
                             <div class="column is-12">
-                                <article class="message is-danger" style="font-weight: bold;" *ngIf="showMessage">
-                                  <div class="message-body is-size-7" [innerHTML]="message">
-                                  </div>
-                                </article>
+                                <div class="alert alert-danger" [innerHTML]="message"></div>
                             </div>
                         </div>
                     </div>

@@ -13,7 +13,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
   items = [];
 
   dataSubscription;
-  categories = ['Movil', 'Videoconsola', 'Ordenador'];
+  categories = ['Móvil', 'Videoconsola', 'Ordenador'];
   sortOptions = [
     {
       name: 'Reciente',
@@ -85,7 +85,6 @@ export class ProductsListComponent implements OnInit, OnDestroy {
            }
          } else {
            this.items = [];
-           console.log(this.items);
          }
        });
      }

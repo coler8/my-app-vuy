@@ -6,3 +6,32 @@ label{
 .card{
   width: 60%;
 }
+
+
+.mask{
+  padding: 50px;
+}
+
+@media (max-width: 576px) {
+
+  .mask{
+    padding: 10px;
+  }
+
+  .card{
+    width: 100%;
+  }
+
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .mask{
+    padding: 10px;
+  }
+
+  .card{
+    width: 100%;
+  }
+
+
+}

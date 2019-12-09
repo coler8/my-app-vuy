@@ -29,7 +29,20 @@ label{
   width: 65%;
 }
 
+.mask{
+  padding: 50px;
+}
+
 @media (max-width: 575.98px) {
+
+  .titulo{
+    font-size: 2rem;
+  }
+
+  .mask{
+    padding: 10px;
+  }
+
   .card{
     width: 100%;
   }
@@ -46,6 +59,13 @@ label{
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
+  .titulo{
+    font-size: 2rem;
+  }
+  .mask{
+    padding: 10px;
+  }
+
   .card{
     width: 100%;
   }
