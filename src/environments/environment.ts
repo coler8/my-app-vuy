@@ -6,11 +6,11 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyCVyCErzf5mEJBDCCsQMkI0fAV3nTS39p0",
+    apiKey: "",
     authDomain: "vuyapp-proyecto.firebaseapp.com",
     databaseURL: "https://vuyapp-proyecto.firebaseio.com",
     projectId: "vuyapp-proyecto",
     storageBucket: "",
-    messagingSenderId: "821869491168"
+    messagingSenderId: ""
   }
 };
